@@ -41,50 +41,21 @@ This PowerShell script is designed to automate the process of color replacement 
 
 ## Color Schemes
 
-The script includes the following extended color schemes:
+### Color Replacement Table
 
-| Color Scheme | Hex Code | Fill Color         | Text Color  |
-|--------------|----------|---------------------|-------------|
-| Green        | `#244739`| ![#244739](https://dummyimage.com/15/244739/000000?text=+) | Black       |
-|              | `#1B5744`| ![#1B5744](https://dummyimage.com/15/1B5744/000000?text=+) | Black       |
-|              | `#247554`| ![#247554](https://dummyimage.com/15/247554/000000?text=+) | Black       |
-|              | `#349E5F`| ![#349E5F](https://dummyimage.com/15/349E5F/000000?text=+) | Black       |
-|              | `#37CC5C`| ![#37CC5C](https://dummyimage.com/15/37CC5C/000000?text=+) | Black       |
-|              | `#4EE760`| ![#4EE760](https://dummyimage.com/15/4EE760/000000?text=+) | Black       |
-|              | `#7BFC76`| ![#7BFC76](https://dummyimage.com/15/7BFC76/000000?text=+) | Black       |
-|              | `#9FFF99`| ![#9FFF99](https://dummyimage.com/15/9FFF99/000000?text=+) | Black       |
-|              | `#BFFFB7`| ![#BFFFB7](https://dummyimage.com/15/BFFFB7/000000?text=+) | Black       |
-|              | `#E4FFD6`| ![#E4FFD6](https://dummyimage.com/15/E4FFD6/000000?text=+) | Black       |
-| Purple       | `#2A145A`| ![#2A145A](https://dummyimage.com/15/2A145A/FFFFFF?text=+) | White       |
-|              | `#500A96`| ![#500A96](https://dummyimage.com/15/500A96/FFFFFF?text=+) | White       |
-|              | `#612CB0`| ![#612CB0](https://dummyimage.com/15/612CB0/FFFFFF?text=+) | White       |
-|              | `#743DD4`| ![#743DD4](https://dummyimage.com/15/743DD4/FFFFFF?text=+) | White       |
-|              | `#8E5CEF`| ![#8E5CEF](https://dummyimage.com/15/8E5CEF/FFFFFF?text=+) | White       |
-|              | `#9F78FC`| ![#9F78FC](https://dummyimage.com/15/9F78FC/FFFFFF?text=+) | White       |
-|              | `#AA96FA`| ![#AA96FA](https://dummyimage.com/15/AA96FA/FFFFFF?text=+) | White       |
-|              | `#BEAFFF`| ![#BEAFFF](https://dummyimage.com/15/BEAFFF/000000?text=+) | Black       |
-|              | `#C8C0FF`| ![#C8C0FF](https://dummyimage.com/15/C8C0FF/000000?text=+) | Black       |
-|              | `#DEDDFF`| ![#DEDDFF](https://dummyimage.com/15/DEDDFF/000000?text=+) | Black       |
-| Blue         | `#0D2155`| ![#0D2155](https://dummyimage.com/15/0D2155/FFFFFF?text=+) | White       |
-|              | `#00227F`| ![#00227F](https://dummyimage.com/15/00227F/FFFFFF?text=+) | White       |
-|              | `#0C32A4`| ![#0C32A4](https://dummyimage.com/15/0C32A4/FFFFFF?text=+) | White       |
-|              | `#1D56C0`| ![#1D56C0](https://dummyimage.com/15/1D56C0/FFFFFF?text=+) | White       |
-|              | `#0672CB`| ![#0672CB](https://dummyimage.com/15/0672CB/FFFFFF?text=+) | White       |
-|              | `#58A5E6`| ![#58A5E6](https://dummyimage.com/15/58A5E6/000000?text=+) | Black       |
-|              | `#80C7FB`| ![#80C7FB](https://dummyimage.com/15/80C7FB/000000?text=+) | Black       |
-|              | `#9FDDFF`| ![#9FDDFF](https://dummyimage.com/15/9FDDFF/000000?text=+) | Black       |
-|              | `#CBEEFF`| ![#CBEEFF](https://dummyimage.com/15/CBEEFF/000000?text=+) | Black       |
-|              | `#E5F8FF`| ![#E5F8FF](https://dummyimage.com/15/E5F8FF/000000?text=+) | Black       |
-| Red          | `#4A193A`| ![#4A193A](https://dummyimage.com/15/4A193A/FFFFFF?text=+) | White       |
-|              | `#691D3F`| ![#691D3F](https://dummyimage.com/15/691D3F/FFFFFF?text=+) | White       |
-|              | `#85133F`| ![#85133F](https://dummyimage.com/15/85133F/FFFFFF?text=+) | White       |
-|              | `#B30B37`| ![#B30B37](https://dummyimage.com/15/B30B37/FFFFFF?text=+) | White       |
-|              | `#D2333D`| ![#D2333D](https://dummyimage.com/15/D2333D/FFFFFF?text=+) | White       |
-|              | `#E1633F`| ![#E1633F](https://dummyimage.com/15/E1633F/FFFFFF?text=+) | White       |
-|              | `#E17F3F`| ![#E17F3F](https://dummyimage.com/15/E17F3F/FFFFFF?text=+) | White       |
-|              | `#F4BB5E`| ![#F4BB5E](https://dummyimage.com/15/F4BB5E/000000?text=+) | Black       |
-|              | `#F9D674`| ![#F9D674](https://dummyimage.com/15/F9D674/000000?text=+) | Black       |
-|              | `#FBEECE`| ![#FBEECE](https://dummyimage.com/15/FBEECE/000000?text=+) | Black       |
+| Green Scheme | Purple Scheme | Blue Scheme | Red Scheme |
+|--------------|---------------|-------------|------------|
+| ![#244739](https://via.placeholder.com/15/244739/000000?text=+) `#244739` | ![#2A145A](https://via.placeholder.com/15/2A145A/000000?text=+) `#2A145A` | ![#0D2155](https://via.placeholder.com/15/0D2155/000000?text=+) `#0D2155` | ![#4A193A](https://via.placeholder.com/15/4A193A/000000?text=+) `#4A193A` |
+| ![#1B5744](https://via.placeholder.com/15/1B5744/000000?text=+) `#1B5744` | ![#500A96](https://via.placeholder.com/15/500A96/000000?text=+) `#500A96` | ![#00227F](https://via.placeholder.com/15/00227F/000000?text=+) `#00227F` | ![#691D3F](https://via.placeholder.com/15/691D3F/000000?text=+) `#691D3F` |
+| ![#247554](https://via.placeholder.com/15/247554/000000?text=+) `#247554` | ![#612CB0](https://via.placeholder.com/15/612CB0/000000?text=+) `#612CB0` | ![#0C32A4](https://via.placeholder.com/15/0C32A4/000000?text=+) `#0C32A4` | ![#85133F](https://via.placeholder.com/15/85133F/000000?text=+) `#85133F` |
+| ![#349E5F](https://via.placeholder.com/15/349E5F/000000?text=+) `#349E5F` | ![#743DD4](https://via.placeholder.com/15/743DD4/000000?text=+) `#743DD4` | ![#1D56C0](https://via.placeholder.com/15/1D56C0/000000?text=+) `#1D56C0` | ![#B30B37](https://via.placeholder.com/15/B30B37/000000?text=+) `#B30B37` |
+| ![#37CC5C](https://via.placeholder.com/15/37CC5C/000000?text=+) `#37CC5C` | ![#8E5CEF](https://via.placeholder.com/15/8E5CEF/000000?text=+) `#8E5CEF` | ![#0672CB](https://via.placeholder.com/15/0672CB/000000?text=+) `#0672CB` | ![#D2333D](https://via.placeholder.com/15/D2333D/000000?text=+) `#D2333D` |
+| ![#4EE760](https://via.placeholder.com/15/4EE760/000000?text=+) `#4EE760` | ![#9F78FC](https://via.placeholder.com/15/9F78FC/000000?text=+) `#9F78FC` | ![#58A5E6](https://via.placeholder.com/15/58A5E6/000000?text=+) `#58A5E6` | ![#E1633F](https://via.placeholder.com/15/E1633F/000000?text=+) `#E1633F` |
+| ![#7BFC76](https://via.placeholder.com/15/7BFC76/000000?text=+) `#7BFC76` | ![#AA96FA](https://via.placeholder.com/15/AA96FA/000000?text=+) `#AA96FA` | ![#80C7FB](https://via.placeholder.com/15/80C7FB/000000?text=+) `#80C7FB` | ![#E17F3F](https://via.placeholder.com/15/E17F3F/000000?text=+) `#E17F3F` |
+| ![#9FFF99](https://via.placeholder.com/15/9FFF99/000000?text=+) `#9FFF99` | ![#BEAFFF](https://via.placeholder.com/15/BEAFFF/000000?text=+) `#BEAFFF` | ![#9FDDFF](https://via.placeholder.com/15/9FDDFF/000000?text=+) `#9FDDFF` | ![#F4BB5E](https://via.placeholder.com/15/F4BB5E/000000?text=+) `#F4BB5E` |
+| ![#BFFFB7](https://via.placeholder.com/15/BFFFB7/000000?text=+) `#BFFFB7` | ![#C8C0FF](https://via.placeholder.com/15/C8C0FF/000000?text=+) `#C8C0FF` | ![#CBEEFF](https://via.placeholder.com/15/CBEEFF/000000?text=+) `#CBEEFF` | ![#F9D674](https://via.placeholder.com/15/F9D674/000000?text=+) `#F9D674` |
+| ![#E4FFD6](https://via.placeholder.com/15/E4FFD6/000000?text=+) `#E4FFD6` | ![#DEDDFF](https://via.placeholder.com/15/DEDDFF/000000?text=+) `#DEDDFF` | ![#E5F8FF](https://via.placeholder.com/15/E5F8FF/000000?text=+) `#E5F8FF` | ![#FBEECE](https://via.placeholder.com/15/FBEECE/000000?text=+) `#FBEECE` |
+
 
 ## How It Works
 
