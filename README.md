@@ -164,36 +164,11 @@ Each new file will have the colors replaced according to the target scheme.
   - **Color Scheme**: Dynamically generated from the keys of `$colorSchemes`.
   - **Date**: Matches date formats to extract date information.
 
-### Error Handling
-
-- The script includes error handling mechanisms:
-  - Checks if the source file exists.
-  - Catches exceptions during file operations like copying, extraction, and compression.
-  - Provides meaningful error messages to the user.
-
-### Logging and Output
-
-- The script outputs informational messages to the console for transparency.
-  - Shows detected components like document name, version, date, and color scheme.
-  - Informs the user about processing steps and completion.
-
 ## Cleanup
 
 After processing, the script automatically cleans up temporary files and directories created during execution to maintain a clean working environment.
 
 
-
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
-
----
-
-### Note:
-
-- **Image Hosting**: The `dummyimage.com` URLs in the color table are placeholders. Ensure that the image hosting service supports hotlinking in Markdown files on GitHub or other platforms.
-- **Customization**: Replace `[Your Name]` and `[Your Contact Information]` with your actual details.
-- **Repository URL**: Update `<repository-url>` with the actual URL of your GitHub repository.
-- **Additional Sections**: Feel free to add more sections such as "Known Issues," "FAQ," or "Future Enhancements" as needed.
-
-Let me know if you need further adjustments or additional information!
