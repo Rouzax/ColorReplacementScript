@@ -115,23 +115,13 @@ function Detect-ColorScheme {
     $files = Get-ColorFiles -dirPath $dirPath -fileType $fileType -ChangeSlideMaster:$false
 
     foreach ($file in $files) {
-        $content = Get-Content -LiteralPath $file.FullName
+        $content = Get-Content -LiteralPath $file.FullName -Raw
 
-        # Check which color scheme matches
         foreach ($scheme in $colorSchemes.Keys) {
-            $matches = $false
             foreach ($color in $colorSchemes[$scheme].Keys) {
                 if ($content -like "*$color*") {
-                    $matches = $true
-                    break
-                } else {
-                    $matches = $false
-                    break
+                    return $scheme
                 }
-            }
-
-            if ($matches) {
-                return $scheme
             }
         }
     }
