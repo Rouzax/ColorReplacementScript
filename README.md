@@ -13,7 +13,7 @@ This PowerShell script automates the process of color replacement in template fi
 
 - **Color Replacement**: Replaces color schemes based on predefined mappings.
 
-- **Slide Master Customization**: Optional parameter to update the slide master in PowerPoint files (USE WITH CAUTION!).
+- **Slide Master Customization**: Optional parameter to update the slide master in PowerPoint files.
 
 - **Output Generation**: Produces new files named according to the original document name, version, date, and new color scheme.
 
@@ -40,7 +40,7 @@ This PowerShell script automates the process of color replacement in template fi
 ### Parameters
 
 - `-sourceFile`: (Mandatory) The path to the source file (template) you want to process.
-- `-ChangeSlideMaster`: (Optional) Use this parameter to enable color replacement in the slide master for PowerPoint files (`.pptx`, `.potx`). This ensures consistency in themes and master slide layouts.
+- `-ChangeSlideMaster`: (Optional) Use this parameter to enable color replacement in the slide master for PowerPoint files (`.pptx`, `.potx`). This ensures consistency in themes and master slide layouts (USE WITH CAUTION!).
 
 ## Color Schemes
 The script includes the following extended color schemes:
