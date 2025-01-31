@@ -1,6 +1,7 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string]$sourceFile
+    [string]$sourceFile,
+    [switch]$ChangeSlideMaster
 )
 
 # Extended Color Schemes
@@ -59,7 +60,8 @@ $colorSchemes = [ordered]@{
 function Get-ColorFiles {
     param (
         [string]$dirPath,
-        [string]$fileType
+        [string]$fileType,
+        [switch]$ChangeSlideMaster
     )
 
     # Initialize an array to hold the files
@@ -71,11 +73,18 @@ function Get-ColorFiles {
         $mediaPath = Join-Path -Path $dirPath -ChildPath "ppt\media"
         $slidesPath = Join-Path -Path $dirPath -ChildPath "ppt\slides"
         $chartsPath = Join-Path -Path $dirPath -ChildPath "ppt\charts"
+        # Include slide layouts if the switch is set
+        if ($ChangeSlideMaster) {
+            $layoutsPath = Join-Path -Path $dirPath -ChildPath "ppt\slideLayouts"
+        }
 
         # Get the files
         $files += Get-ChildItem -Path $mediaPath -Recurse -Include *.svg -ErrorAction SilentlyContinue
         $files += Get-ChildItem -Path $slidesPath -Recurse -Include *.xml -ErrorAction SilentlyContinue
         $files += Get-ChildItem -Path $chartsPath -Recurse -Include *.xml -ErrorAction SilentlyContinue
+        if ($ChangeSlideMaster) {
+            $files += Get-ChildItem -Path $layoutsPath -Recurse -Include *.xml -ErrorAction SilentlyContinue
+        }
 
     } elseif ($fileType -match 'docx|dotx') {
         # Paths for DOC files
@@ -103,7 +112,7 @@ function Detect-ColorScheme {
         [string]$fileType
     )
 
-    $files = Get-ColorFiles -dirPath $dirPath -fileType $fileType
+    $files = Get-ColorFiles -dirPath $dirPath -fileType $fileType -ChangeSlideMaster:$false
 
     foreach ($file in $files) {
         $content = Get-Content -LiteralPath $file.FullName
@@ -136,13 +145,14 @@ function Replace-Colors {
         [string]$dirPath,
         [string]$sourceScheme,
         [string]$targetScheme,
-        [string]$fileType
+        [string]$fileType,
+        [switch]$ChangeSlideMaster
     )
 
     $sourceColors = @($colorSchemes[$sourceScheme].Keys)
     $targetColors = @($colorSchemes[$targetScheme].Keys)
 
-    $files = Get-ColorFiles -dirPath $dirPath -fileType $fileType
+    $files = Get-ColorFiles -dirPath $dirPath -fileType $fileType -ChangeSlideMaster:$ChangeSlideMaster
 
     foreach ($file in $files) {
         $content = Get-Content -LiteralPath $file.FullName
@@ -238,6 +248,18 @@ if (-not (Test-Path $sourceFile)) {
 $sourceDir = Split-Path -Parent $sourceFile
 $sourceName = [System.IO.Path]::GetFileNameWithoutExtension($sourceFile)
 $sourceExtension = [System.IO.Path]::GetExtension($sourceFile)
+
+# Define supported extensions
+$supportedExtensions = @(".pptx", ".potx", ".docx", ".dotx", ".svg")
+
+# Validate the file extension
+if ($sourceExtension -notin $supportedExtensions) {
+    Write-Host "Unsupported file type: $sourceExtension. Supported types are: $supportedExtensions" -ForegroundColor Red
+    exit
+}
+
+# Proceed with the script
+Write-Host "Processing file: $sourceFile" -ForegroundColor Green
 
 $version = $null
 $detectedScheme = $null

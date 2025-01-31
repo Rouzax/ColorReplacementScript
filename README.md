@@ -1,6 +1,6 @@
 # PowerShell Color Replacement Script
 
-This PowerShell script automates the process of color replacement in template files. It supports various file types, including Microsoft Office formats (`.docx`, `.dotx`, `.pptx`, `.potx`) and SVG files. The script detects the current color scheme from the filename or the content of the file and generates new files with specified color replacements.
+This PowerShell script automates the process of color replacement in template files. It supports various file types, including Microsoft Office formats (`.docx`, `.dotx`, `.pptx`, `.potx`) and `.SVG` files. The script detects the current color scheme from the filename or the content of the file and generates new files with specified color replacements. It also includes the ability to modify slide masters in PowerPoint templates for advanced customization.
 
 ## Features
 
@@ -12,6 +12,8 @@ This PowerShell script automates the process of color replacement in template fi
 - **Color Scheme Detection**: Automatically detects the current color scheme from the filename or file content.
 
 - **Color Replacement**: Replaces color schemes based on predefined mappings.
+
+- **Slide Master Customization**: Optional parameter to update the slide master in PowerPoint files (USE WITH CAUTION!).
 
 - **Output Generation**: Produces new files named according to the original document name, version, date, and new color scheme.
 
@@ -32,12 +34,13 @@ This PowerShell script automates the process of color replacement in template fi
 2. **Run the Script**: Execute the script in PowerShell with the required parameter.
 
     ```powershell
-    .\ColorReplacementScript.ps1 -sourceFile "path\to\your\template.file"
+    .\ColorReplacementScript.ps1 -sourceFile "path\to\your\template.file" [-ChangeSlideMaster]
     ```
 
 ### Parameters
 
 - `-sourceFile`: (Mandatory) The path to the source file (template) you want to process.
+- `-ChangeSlideMaster`: (Optional) Use this parameter to enable color replacement in the slide master for PowerPoint files (`.pptx`, `.potx`). This ensures consistency in themes and master slide layouts.
 
 ## Color Schemes
 The script includes the following extended color schemes:
@@ -49,18 +52,18 @@ The script includes the following extended color schemes:
 
 ### Color Replacement Table
 
-| Green Scheme                                            | Purple Scheme                                           | Blue Scheme                                             | Red Scheme                                              |
-|---------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
-| ![#244739](https://dummyimage.com/20/244739/000000.png) `#244739`   | ![#2A145A](https://dummyimage.com/20/2A145A/000000.png) `#2A145A`   | ![#0D2155](https://dummyimage.com/20/0D2155/000000.png) `#0D2155`   | ![#4A193A](https://dummyimage.com/20/4A193A/000000.png) `#4A193A`   |
-| ![#1B5744](https://dummyimage.com/20/1B5744/000000.png) `#1B5744`   | ![#500A96](https://dummyimage.com/20/500A96/000000.png) `#500A96`   | ![#00227F](https://dummyimage.com/20/00227F/000000.png) `#00227F`   | ![#691D3F](https://dummyimage.com/20/691D3F/000000.png) `#691D3F`   |
-| ![#247554](https://dummyimage.com/20/247554/000000.png) `#247554`   | ![#612CB0](https://dummyimage.com/20/612CB0/000000.png) `#612CB0`   | ![#0C32A4](https://dummyimage.com/20/0C32A4/000000.png) `#0C32A4`   | ![#85133F](https://dummyimage.com/20/85133F/000000.png) `#85133F`   |
-| ![#349E5F](https://dummyimage.com/20/349E5F/000000.png) `#349E5F`   | ![#743DD4](https://dummyimage.com/20/743DD4/000000.png) `#743DD4`   | ![#1D56C0](https://dummyimage.com/20/1D56C0/000000.png) `#1D56C0`   | ![#B30B37](https://dummyimage.com/20/B30B37/000000.png) `#B30B37`   |
-| ![#37CC5C](https://dummyimage.com/20/37CC5C/000000.png) `#37CC5C`   | ![#8E5CEF](https://dummyimage.com/20/8E5CEF/000000.png) `#8E5CEF`   | ![#0672CB](https://dummyimage.com/20/0672CB/000000.png) `#0672CB`   | ![#D2333D](https://dummyimage.com/20/D2333D/000000.png) `#D2333D`   |
-| ![#4EE760](https://dummyimage.com/20/4EE760/000000.png) `#4EE760`   | ![#9F78FC](https://dummyimage.com/20/9F78FC/000000.png) `#9F78FC`   | ![#58A5E6](https://dummyimage.com/20/58A5E6/000000.png) `#58A5E6`   | ![#E1633F](https://dummyimage.com/20/E1633F/000000.png) `#E1633F`   |
-| ![#7BFC76](https://dummyimage.com/20/7BFC76/000000.png) `#7BFC76`   | ![#AA96FA](https://dummyimage.com/20/AA96FA/000000.png) `#AA96FA`   | ![#80C7FB](https://dummyimage.com/20/80C7FB/000000.png) `#80C7FB`   | ![#E17F3F](https://dummyimage.com/20/E17F3F/000000.png) `#E17F3F`   |
-| ![#9FFF99](https://dummyimage.com/20/9FFF99/000000.png) `#9FFF99`   | ![#BEAFFF](https://dummyimage.com/20/BEAFFF/000000.png) `#BEAFFF`   | ![#9FDDFF](https://dummyimage.com/20/9FDDFF/000000.png) `#9FDDFF`   | ![#F4BB5E](https://dummyimage.com/20/F4BB5E/000000.png) `#F4BB5E`   |
-| ![#BFFFB7](https://dummyimage.com/20/BFFFB7/000000.png) `#BFFFB7`   | ![#C8C0FF](https://dummyimage.com/20/C8C0FF/000000.png) `#C8C0FF`   | ![#CBEEFF](https://dummyimage.com/20/CBEEFF/000000.png) `#CBEEFF`   | ![#F9D674](https://dummyimage.com/20/F9D674/000000.png) `#F9D674`   |
-| ![#E4FFD6](https://dummyimage.com/20/E4FFD6/000000.png) `#E4FFD6`   | ![#DEDDFF](https://dummyimage.com/20/DEDDFF/000000.png) `#DEDDFF`   | ![#E5F8FF](https://dummyimage.com/20/E5F8FF/000000.png) `#E5F8FF`   | ![#FBEECE](https://dummyimage.com/20/FBEECE/000000.png) `#FBEECE`   |
+| Green Scheme                                                      | Purple Scheme                                                     | Blue Scheme                                                       | Red Scheme                                                        |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| ![#244739](https://dummyimage.com/20/244739/000000.png&text=+) `#244739` | ![#2A145A](https://dummyimage.com/20/2A145A/000000.png&text=+) `#2A145A` | ![#0D2155](https://dummyimage.com/20/0D2155/000000.png&text=+) `#0D2155` | ![#4A193A](https://dummyimage.com/20/4A193A/000000.png&text=+) `#4A193A` |
+| ![#1B5744](https://dummyimage.com/20/1B5744/000000.png&text=+) `#1B5744` | ![#500A96](https://dummyimage.com/20/500A96/000000.png&text=+) `#500A96` | ![#00227F](https://dummyimage.com/20/00227F/000000.png&text=+) `#00227F` | ![#691D3F](https://dummyimage.com/20/691D3F/000000.png&text=+) `#691D3F` |
+| ![#247554](https://dummyimage.com/20/247554/000000.png&text=+) `#247554` | ![#612CB0](https://dummyimage.com/20/612CB0/000000.png&text=+) `#612CB0` | ![#0C32A4](https://dummyimage.com/20/0C32A4/000000.png&text=+) `#0C32A4` | ![#85133F](https://dummyimage.com/20/85133F/000000.png&text=+) `#85133F` |
+| ![#349E5F](https://dummyimage.com/20/349E5F/000000.png&text=+) `#349E5F` | ![#743DD4](https://dummyimage.com/20/743DD4/000000.png&text=+) `#743DD4` | ![#1D56C0](https://dummyimage.com/20/1D56C0/000000.png&text=+) `#1D56C0` | ![#B30B37](https://dummyimage.com/20/B30B37/000000.png&text=+) `#B30B37` |
+| ![#37CC5C](https://dummyimage.com/20/37CC5C/000000.png&text=+) `#37CC5C` | ![#8E5CEF](https://dummyimage.com/20/8E5CEF/000000.png&text=+) `#8E5CEF` | ![#0672CB](https://dummyimage.com/20/0672CB/000000.png&text=+) `#0672CB` | ![#D2333D](https://dummyimage.com/20/D2333D/000000.png&text=+) `#D2333D` |
+| ![#4EE760](https://dummyimage.com/20/4EE760/000000.png&text=+) `#4EE760` | ![#9F78FC](https://dummyimage.com/20/9F78FC/000000.png&text=+) `#9F78FC` | ![#58A5E6](https://dummyimage.com/20/58A5E6/000000.png&text=+) `#58A5E6` | ![#E1633F](https://dummyimage.com/20/E1633F/000000.png&text=+) `#E1633F` |
+| ![#7BFC76](https://dummyimage.com/20/7BFC76/000000.png&text=+) `#7BFC76` | ![#AA96FA](https://dummyimage.com/20/AA96FA/000000.png&text=+) `#AA96FA` | ![#80C7FB](https://dummyimage.com/20/80C7FB/000000.png&text=+) `#80C7FB` | ![#E17F3F](https://dummyimage.com/20/E17F3F/000000.png&text=+) `#E17F3F` |
+| ![#9FFF99](https://dummyimage.com/20/9FFF99/000000.png&text=+) `#9FFF99` | ![#BEAFFF](https://dummyimage.com/20/BEAFFF/000000.png&text=+) `#BEAFFF` | ![#9FDDFF](https://dummyimage.com/20/9FDDFF/000000.png&text=+) `#9FDDFF` | ![#F4BB5E](https://dummyimage.com/20/F4BB5E/000000.png&text=+) `#F4BB5E` |
+| ![#BFFFB7](https://dummyimage.com/20/BFFFB7/000000.png&text=+) `#BFFFB7` | ![#C8C0FF](https://dummyimage.com/20/C8C0FF/000000.png&text=+) `#C8C0FF` | ![#CBEEFF](https://dummyimage.com/20/CBEEFF/000000.png&text=+) `#CBEEFF` | ![#F9D674](https://dummyimage.com/20/F9D674/000000.png&text=+) `#F9D674` |
+| ![#E4FFD6](https://dummyimage.com/20/E4FFD6/000000.png&text=+) `#E4FFD6` | ![#DEDDFF](https://dummyimage.com/20/DEDDFF/000000.png&text=+) `#DEDDFF` | ![#E5F8FF](https://dummyimage.com/20/E5F8FF/000000.png&text=+) `#E5F8FF` | ![#FBEECE](https://dummyimage.com/20/FBEECE/000000.png&text=+) `#FBEECE` |
 
 ## How It Works
 
@@ -93,16 +96,21 @@ The script follows a series of steps to perform color replacement:
   - **Replacement Logic**:
     - The script replaces color codes from the source scheme with those from the target scheme.
     - It uses the order of colors defined in the color scheme mappings to ensure accurate replacement.
+    - Optionally modifies the slide master when `-ChangeSlideMaster` is specified.
   - **File Reassembly**: After replacement, the script reassembles the files back into the original format.
 
-### 4. Output Generation
+### 4. Slide Master Update (`-ChangeSlideMaster`)
+
+For PowerPoint files, when `-ChangeSlideMaster` is enabled, the script updates the slide master with the new color scheme. This ensures consistent appearance across all slides.
+
+### 5. Output Generation
 
 - **Filename Construction**: The script constructs the output filenames using the extracted components in the following order:
   - `DocumentName - Version - Date - ColorScheme`
   - Components not present in the original filename are omitted.
 - **File Saving**: The new files with the replaced color schemes are saved in the same directory as the source file.
 
-### 5. Cleanup
+### 6. Cleanup
 
 - **Temporary Files**: The script deletes any temporary files and directories created during the process to ensure no unnecessary files are left behind.
 
@@ -117,12 +125,13 @@ Company Presentation - v1.0 - Blue - 2023-08-15.pptx
 Running the script:
 
 ```powershell
-.\ColorReplacementScript.ps1 -sourceFile "C:\Templates\Company Presentation - v1.0 - Blue - 2023-08-15.pptx"
+.\ColorReplacementScript.ps1 -sourceFile "C:\Templates\Company Presentation - v1.0 - Blue - 2023-08-15.pptx" -ChangeSlideMaster
 ```
 
 The script will:
 
 - Detect that the current color scheme is **Blue**.
+- Update the slide master and content for each target scheme.
 - Generate new files with the same document name, version, and date but with other color schemes:
 
   - `Company Presentation - v1.0 - 2023.08.15 - Green.pptx`
@@ -138,6 +147,7 @@ Each new file will have the colors replaced according to the target scheme.
 - **`Get-ColorFiles`**:
   - Retrieves all relevant files that may contain color codes based on the file type (e.g., `.pptx`, `.docx`, `.svg`).
   - Excludes certain files (like theme files) to avoid unintended replacements.
+  - Will include PowerPoint Slide Master layouts when `-ChangeSlideMaster` is given.
 
 - **`Detect-ColorScheme`**:
   - Uses `Get-ColorFiles` to obtain files.
