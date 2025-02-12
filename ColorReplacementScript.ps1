@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+    Replaces color codes in document templates based on predefined color schemes.
+
+.DESCRIPTION
+    The ColorReplacementScript.ps1 script processes a source document template (such as PPTX, POTX, DOCX, DOTX, or SVG) by detecting its current color scheme—either from its filename or its content—and then generating new output files that apply alternative color schemes. For PowerPoint templates, an optional switch allows changing slide master layouts as well.
+
+.PARAMETER sourceFile
+    The full path to the source file that will be processed. The file must be one of the supported types (.pptx, .potx, .docx, .dotx, or .svg).
+
+.PARAMETER ChangeSlideMaster
+    A switch indicating whether to process slide layouts (applicable to PowerPoint templates) during the color replacement.
+
+.EXAMPLE
+    .\ColorReplacementScript.ps1 -sourceFile "C:\Templates\MyTemplate - v1.0 - Green - 2025-02-12.pptx"
+    Processes the template, detects the current (Green) color scheme, and creates new files for each of the remaining color schemes.
+
+.NOTES
+    Author: Rouzax
+    Date: 2025-02-12
+#>
 param(
     [Parameter(Mandatory = $true)]
     [string]$sourceFile,
@@ -56,8 +77,31 @@ $colorSchemes = [ordered]@{
     }
 }
 
-# Function to get relevant color files based on file type
 function Get-ColorFiles {
+    <#
+    .SYNOPSIS
+        Retrieves files containing color data from the template folder structure.
+
+    .DESCRIPTION
+        Depending on the file type, this function constructs paths (such as ppt\media, ppt\slides, etc. for PowerPoint
+        files or word\media for Word files) and returns a collection of files (XML or SVG) that are candidates for 
+        color replacement. Optionally, slide layout files are included if the ChangeSlideMaster switch is specified.
+
+    .PARAMETER dirPath
+        The directory path where the template’s files are located (typically the extracted folder).
+
+    .PARAMETER fileType
+        The file type (extension) of the template (e.g., pptx, potx, docx, dotx, svg).
+
+    .PARAMETER ChangeSlideMaster
+        A switch to include slide master or layout files in the file search (applicable to PowerPoint templates).
+
+    .OUTPUTS
+        An array of FileInfo objects representing the files to process.
+
+    .EXAMPLE
+        $files = Get-ColorFiles -dirPath "C:\Temp\TemplateExtract" -fileType "pptx" -ChangeSlideMaster
+    #>
     param (
         [string]$dirPath,
         [string]$fileType,
@@ -107,6 +151,26 @@ function Get-ColorFiles {
 
 # Function to detect the current color scheme from the file contents
 function Detect-ColorScheme {
+    <#
+    .SYNOPSIS
+        Detects the current color scheme used in the template.
+
+    .DESCRIPTION
+        This function reads the contents of the template files and searches for known color codes from the
+        predefined color schemes. When a matching color code is found, the corresponding color scheme is returned.
+
+    .PARAMETER dirPath
+        The directory path where the template’s files have been extracted.
+
+    .PARAMETER fileType
+        The file type (extension) of the template (e.g., pptx, docx, svg).
+
+    .OUTPUTS
+        Returns the detected color scheme as a string (e.g., "Green", "Purple", "Blue", or "Red"), or $null if no scheme matches.
+
+    .EXAMPLE
+        $scheme = Detect-ColorScheme -dirPath "C:\Temp\TemplateExtract" -fileType "pptx"
+    #>
     param (
         [string]$dirPath,
         [string]$fileType
@@ -131,6 +195,36 @@ function Detect-ColorScheme {
 
 # Function to replace colors based on target scheme
 function Replace-Colors {
+    <#
+    .SYNOPSIS
+        Replaces color codes in the template files from one color scheme to another.
+
+    .DESCRIPTION
+        For each file retrieved by Get-ColorFiles, this function iterates through the list of color codes in the
+        source color scheme and replaces them with the corresponding codes from the target color scheme. It processes
+        both XML and SVG files.
+
+    .PARAMETER dirPath
+        The directory path where the template’s files are located.
+
+    .PARAMETER sourceScheme
+        The color scheme currently used in the template (e.g., "Green").
+
+    .PARAMETER targetScheme
+        The target color scheme to apply to the template (e.g., "Blue").
+
+    .PARAMETER fileType
+        The file type (extension) of the template (e.g., pptx, docx, svg).
+
+    .PARAMETER ChangeSlideMaster
+        A switch indicating whether to include slide master/layout files in the processing.
+
+    .EXAMPLE
+        Replace-Colors -dirPath "C:\Temp\TemplateExtract" -sourceScheme "Green" -targetScheme "Red" -fileType "pptx" -ChangeSlideMaster
+
+    .NOTES
+        Each color code is replaced using a regex escape to ensure literal matching.
+    #>
     param (
         [string]$dirPath,
         [string]$sourceScheme,
@@ -168,6 +262,36 @@ function Replace-Colors {
 
 # Function to handle the unzipping, color replacement, and zipping process
 function Process-Template {
+    <#
+    .SYNOPSIS
+        Handles extraction, color replacement, and re-compression (if needed) of the template file.
+
+    .DESCRIPTION
+        This function manages the overall process for a template file. If the file is an SVG, it directly processes
+        the file. For compressed templates (e.g., PPTX, DOCX), it extracts the archive, applies color replacements,
+        and then compresses the updated files into a new output file.
+
+    .PARAMETER sourceFile
+        The full path to the source template file.
+
+    .PARAMETER outputFile
+        The full path where the processed file (with the target color scheme) will be saved.
+
+    .PARAMETER sourceScheme
+        The detected color scheme currently used in the template.
+
+    .PARAMETER targetScheme
+        The new color scheme to apply to the template.
+
+    .PARAMETER fileType
+        The file extension of the template (e.g., .pptx, .docx, .svg).
+
+    .EXAMPLE
+        Process-Template -sourceFile "C:\Templates\MyTemplate.pptx" -outputFile "C:\Templates\MyTemplate - Red.pptx" -sourceScheme "Green" -targetScheme "Red" -fileType ".pptx"
+
+    .NOTES
+        The function creates a temporary directory for processing and cleans up after completion.
+    #>
     param (
         [string]$sourceFile,
         [string]$outputFile,
@@ -226,7 +350,9 @@ function Process-Template {
     Remove-Item -Path $tempDir -Recurse -Force
 }
 
-# Main script
+################################################################################
+# Main Script
+################################################################################
 
 # Ensure the source file exists
 if (-not (Test-Path $sourceFile)) {
